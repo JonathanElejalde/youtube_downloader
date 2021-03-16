@@ -73,8 +73,4 @@ class Downloader:
         return resolutions
 
 if __name__ == "__main__":
-    # link = 'https://www.youtube.com/watch?v=USDX0X-d588'
-    playlist_link = 'https://www.youtube.com/playlist?list=PLRg2tbfTDKwHYN-pqtCbKkTgA9JtwnkNj'
-    quality = '480p'
-    downloader = Downloader(playlist_link, video=True, audio=True, playlist=True, quality=quality)
-    downloader.download()
+    pass
