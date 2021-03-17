@@ -44,10 +44,10 @@ if st.button('Download'):
         playlist = True
     else:
         playlist = False
-    if download_type == 'Video':
+    if download_selection == 'Video':
         video = True
-        audio = True
-    elif download_type == 'Only Audio':
+        audio = False
+    elif download_selection == 'Only Audio':
         video = False
         audio = True
     else:
@@ -55,7 +55,8 @@ if st.button('Download'):
         audio = True
 
     info = st.empty()
-    downloader = Downloader(link, video=video, audio=audio, playlist=playlist, quality=quality)
+
+    downloader = Downloader(link, video=video, audio=audio, playlist=playlist, quality=quality, convert=True)
 
     info.info('Downloading...')
     downloader.download()

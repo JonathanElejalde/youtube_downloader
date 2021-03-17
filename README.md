@@ -24,13 +24,23 @@ It uses a simple UI created with streamlit, where you can follow the steps prett
 ### Install
 ```console
 git clone https://github.com/JonathanElejalde/youtube-downloader.git
+cd youtube-downloader
 pip install -r requirements.txt
 ```
 
 #### Important
 
 Because the app converts the mp4 audio to mp3 using pydub, you also are going to  
-need the download of **ffmpeg**
+need the download of **ffmpeg**. However, you can decide not to convert to mp3  
+and avoid this download. For this, you just need to pass `convert=True` when  
+instantiating the Downloader object.
+
+```python
+# Change this
+downloader = Downloader(link, video=video, audio=audio, playlist=playlist, quality=quality)
+# For this
+downloader = Downloader(link, video=video, audio=audio, playlist=playlist, quality=quality, convert=False)
+```
 
 ### Usage
 
