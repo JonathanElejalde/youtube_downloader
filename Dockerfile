@@ -14,12 +14,14 @@ enableCORS = false\n\
 # exposing default port for streamlit
 EXPOSE 8501
 
-ADD . /home/youtube_downloader/
-
 WORKDIR /home/youtube_downloader/
+
+COPY ./requirements.txt ./
+
+RUN pip install -r requirements.txt && rm requirements.txt
 
 RUN apt update -y && apt install ffmpeg -y
 
-RUN pip install -r requirements.txt
+ADD . .
 
 CMD [ "streamlit", "run", "app.py" ]
