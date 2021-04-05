@@ -11,7 +11,7 @@ It uses a simple UI created with streamlit, where you can follow the steps prett
 
 - Choose between downloading a video or a playlist
 - Add the link
-- Choose a download type. You could download the normal youtube vide, only the audio or both.
+- Choose a download type. You could download the normal youtube video, only the audio or both.
 - Choose a quality for the video
 - Hit the "Download" button
 - Wait 
@@ -20,20 +20,36 @@ It uses a simple UI created with streamlit, where you can follow the steps prett
 - If you are downloading a playlist, these options apply to every link
 - If the resolution is not available, it will download the highest
 
-
-### Install
+### Install with docker
 ```console
-git clone https://github.com/JonathanElejalde/youtube-downloader.git
-cd youtube-downloader
-pip install -r requirements.txt
+git clone https://github.com/JonathanElejalde/youtube_downloader.git
+cd youtube_downloader
+docker build -t youtube:1.0 .
+docker run --name youtube_downloader -p 8501:8501 -v $(pwd)/downloads:/home/youtube_downloader/downloads/ youtube:1.0
 ```
 
+### Usage with docker
+
+Now you can access the app on `http://localhost:8501/`.
+
+The next time that you need to start the app, you can use the following command:     
+`docker start -i youtube_downloader`, then we can access the app on `http://localhost:8501/`.
+
+
+### Install without docker
+```console
+git clone https://github.com/JonathanElejalde/youtube_downloader.git
+cd youtube_downloader
+pip install -r requirements.txt
+```
 #### Important
 
-Because the app converts the mp4 audio to mp3 using pydub, you also are going to  
-need the download of **ffmpeg**. However, you can decide not to convert to mp3  
-and avoid this download. For this, you just need to pass `convert=True` when  
+Because the app converts the mp4 audio to mp3 using pydub, you're going to  
+need **ffmpeg**. However, you can decide not to convert to mp3  
+and avoid this download. For this, you just need to pass `convert=False` when  
 instantiating the Downloader object.
+
+You change this code in `app.py` line `59`
 
 ```python
 # Change this
@@ -44,7 +60,7 @@ downloader = Downloader(link, video=video, audio=audio, playlist=playlist, quali
 
 ### Usage
 
-Once we have installed everything, we can just run this command
+Once you have installed everything, you can just run this command
 ```console
 streamlit run app.py
 ```
