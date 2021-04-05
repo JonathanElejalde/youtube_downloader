@@ -62,7 +62,7 @@ if st.button('Download'):
     downloader.download()
     text = f"""
     The download was successful  
-    Search for it at: {str(Path().absolute()) + '/downloads/'}
+    Search for it at: {'./youtube_downloader/downloads/'}
     """
     info.success(text)
 
